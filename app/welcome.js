@@ -4,9 +4,8 @@ import { router } from 'expo-router';
 
 const welcome = () => {
 
-    const NEXT_SLIDE = './OnboardingPages/slide_1';
     return (
-        <Pressable onPress={() => router.push(NEXT_SLIDE)}>
+        <Pressable onPress={() => router.push('slide_1')}>
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome</Text>
                 <Image
@@ -15,7 +14,6 @@ const welcome = () => {
                 />
                 <Text style={styles.logotitle}>Ears2Eyes</Text>
                 <Text style={styles.tagline}>We’re here to help you see the world{'\n'}through sound...</Text>
-                <Text>You are on welcome page going to slide_1</Text>
             </View>
         </Pressable>
     )
