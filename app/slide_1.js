@@ -1,34 +1,52 @@
-import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react'
-import { router } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
-const slide_1 = () => {
+const Slide1 = () => {
+  const router = useRouter();
+
+  const onSwipeLeft = () => {
+    router.push('slide_2');
+  };
+
+  const onGestureEvent = (event) => {
+    if (event.nativeEvent.translationX < -50) {
+      onSwipeLeft();
+    }
+  };
+
   return (
-    //<Pressable onPress={() => router.push('slide_2')}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome</Text>
-        <Text style={styles.tagline}>We’re here to help you see the world{'\n'}through sound...</Text>
-      </View>
-    //</Pressable> 
-  )
-}
+    <GestureHandlerRootView style={styles.container}>
+      <PanGestureHandler onGestureEvent={onGestureEvent}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Welcome</Text>
+          <Text style={styles.tagline}>We’re here to help you see the world{'\n'}through sound...</Text>
+        </View>
+      </PanGestureHandler>
+    </GestureHandlerRootView>
+  );
+};
 
-export default slide_1
+export default Slide1;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    justifyContent: 'center', // Center content vertically
+    alignItems: 'center', // Center content horizontally
+    padding: 24,
   },
   title: {
-      fontSize: 36,
-      fontWeight: "normal",
-      marginTop: 120,
-      textAlign: 'center',
+    fontSize: 36,
+    fontWeight: 'normal',
+    marginTop: 120,
+    textAlign: 'center',
   },
   tagline: {
     fontSize: 16,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     marginTop: 80,
+    textAlign: 'center',
   },
-})
+});
