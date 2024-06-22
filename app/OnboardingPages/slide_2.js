@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { router } from 'expo-router';
 
 const slide_2 = () => {
-  const NEXT_SLIDE = './OnboardingPages/slide_3';
+  const NEXT_SLIDE = './slide_3';
   return (
     <Pressable onPress={() => router.push(NEXT_SLIDE)}>
     <View>

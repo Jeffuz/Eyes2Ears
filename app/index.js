@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Welcome from './OnboardingPages/welcome';
 import Home from './home';
-
+import Name from './OnboardingPages/name';
 export default function Page() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const getCurrentUser = async ()  => {
-      const currentUser = await AsyncStorage.getItem("user");
+      const currentUser = await AsyncStorage.getItem("userName");
 
       console.log(currentUser)
       if (currentUser === null) {
@@ -38,6 +38,7 @@ export default function Page() {
     return (
       <View style={styles.container}>
         <Welcome/>
+        {/* <Name/> */}
         <Text style={styles.red}>zlihgeolhgoe</Text>
       </View>
     );
