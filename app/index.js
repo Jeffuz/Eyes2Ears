@@ -28,21 +28,24 @@ export default function Page() {
 
   }, [])
 
-  if(isLoggedIn) {
-    return (
-      <View style={styles.container}>
-        <Home/>
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        <Welcome/>
-        {/* <Name/> */}
-        <Text style={styles.red}>zlihgeolhgoe</Text>
-      </View>
-    );
-  }
+  // if(isLoggedIn) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Home/>
+  //     </View>
+  //   );
+  // } else {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Welcome/>
+  //       {/* <Name/> */}
+  //       <Text style={styles.red}>zlihgeolhgoe</Text>
+  //     </View>
+  //   );
+  // }
+  return (
+    <Welcome/>
+  )
 
 }
 
