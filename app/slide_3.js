@@ -27,8 +27,9 @@ const Slide2 = () => {
     <GestureHandlerRootView style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <View style={styles.container}>
-          <Text style={styles.title}>Welcome33333</Text>
-          <Text style={styles.tagline}>We’re here to help you see the world{'\n'}through sound...</Text>
+          <Text style={styles.title}>Getting Started</Text>
+          <Text style={styles.tagline}>Point your camera at an object and double tap to take a photo. Swipe to filp the camera. 
+          Eyes2Ears will describe what it sees. Use voice commands or touch to interact. </Text>
         </View>
       </PanGestureHandler>
     </GestureHandlerRootView>
@@ -40,7 +41,7 @@ export default Slide2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center', // Center content vertically
+    //justifyContent: 'center', // Center content vertically
     alignItems: 'center', // Center content horizontally
     padding: 24,
   },
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'normal',
     marginTop: 120,
-    textAlign: 'center',
   },
   tagline: {
     fontSize: 16,
