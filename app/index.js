@@ -3,7 +3,7 @@ import Welcome from './welcome';
 
 export default function Page() {
   return (
-    <View style={styles.container}>
+    <View>
       <Welcome/>
     </View>
   );
