@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Welcome from './OnboardingPages/welcome';
+import Welcome from './welcome';
 import Home from './home';
-import Name from './OnboardingPages/name';
+import Name from './name';
 export default function Page() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);

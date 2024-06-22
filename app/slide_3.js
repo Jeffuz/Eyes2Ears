@@ -3,39 +3,37 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
-const slide_1 = () => {
+const slide_3 = () => {
   const router = useRouter();
 
-  const onSwipeLeft = () => {
-    router.push('slide_2');
-  };
+  // const onSwipeLeft = () => {
+  //   router.push('slide_3');
+  // };
   
   const onSwipeRight = () => {
-    router.push('../welcome'); 
+    router.push('slide_2'); 
   };
   
   const onGestureEvent = (event) => {
-    if (event.nativeEvent.translationX < -50) {
-      onSwipeLeft();
-    } else if (event.nativeEvent.translationX > 50) {
+    if (event.nativeEvent.translationX > 50) {
       onSwipeRight();
     }
   };
+  
 
   return (
     <GestureHandlerRootView style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <View style={styles.container}>
-          <Text style={styles.title}>Welcome</Text>
-          <Text style={styles.tagline}>Welcome to Eyes2Ears! This app helps you see the world through sound with real-time audio and text descriptions using advanced AI. 
-          </Text>
+          <Text style={styles.title}>Get Started</Text>
+          <Text style={styles.tagline}>Point your camera at an object and double tap to take a photo. Swipe to switch cameras. Eyes2Ears will describe what it sees. Use voice commands or touch to interact. </Text>
         </View>
       </PanGestureHandler>
     </GestureHandlerRootView>
   );
 };
 
-export default slide_1;
+export default slide_3;
 
 const styles = StyleSheet.create({
   container: {

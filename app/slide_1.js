@@ -3,15 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
-const slide_2 = () => {
+const slide_1 = () => {
   const router = useRouter();
 
   const onSwipeLeft = () => {
-    router.push('slide_3');
+    router.push('slide_2');
   };
   
   const onSwipeRight = () => {
-    router.push('slide_1'); 
+    router.push('welcome'); 
   };
   
   const onGestureEvent = (event) => {
@@ -21,21 +21,21 @@ const slide_2 = () => {
       onSwipeRight();
     }
   };
-  
 
   return (
     <GestureHandlerRootView style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <View style={styles.container}>
-          <Text style={styles.title}>Scan and Listen</Text>
-          <Text style={styles.tagline}>Eyes2Ears uses your smartphone camera to capture images. It analyzes photos and provides audio descriptions to help you understand your surroundings.</Text>
+          <Text style={styles.title}>Welcome</Text>
+          <Text style={styles.tagline}>Welcome to Eyes2Ears! This app helps you see the world through sound with real-time audio and text descriptions using advanced AI. 
+          </Text>
         </View>
       </PanGestureHandler>
     </GestureHandlerRootView>
   );
 };
 
-export default slide_2;
+export default slide_1;
 
 const styles = StyleSheet.create({
   container: {

@@ -5,11 +5,11 @@ import { router } from 'expo-router';
 const welcome = () => {
 
     return (
-        <Pressable onPress={() => router.push('./OnboardingPages/slide_1')}>
+        <Pressable onPress={() => router.push('slide_1')}>
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome</Text>
                 <Image
-                    source={require('../images/Eyes2Ears.png')}
+                    source={require('./images/Eyes2Ears.png')}
                     style={styles.logo}
                 />
                 <Text style={styles.logotitle}>Ears2Eyes</Text>
