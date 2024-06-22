@@ -2,10 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const slide_1 = () => {
+  const NEXT_SLIDE = './OnboardingPages/slide_2';
   return (
+    <Pressable onPress={() => router.push(NEXT_SLIDE)}>
     <View>
-      <Text>slide_1</Text>
+        <Text>On Slide 1</Text>
+        <Text>Press to Go Slide 2</Text>
     </View>
+</Pressable>
   )
 }
 

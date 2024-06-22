@@ -3,12 +3,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 
 const welcome = () => {
+    const NEXT_SLIDE = './OnboardingPages/slide_1';
     return (
-        <View>
-            <Pressable onPress={() => router.push('slide_1')}>
+        <Pressable onPress={() => router.push(NEXT_SLIDE)}>
+            <View>
                 <Text>You are on welcome page going to slide_1</Text>
-            </Pressable>
-        </View>
+            </View>
+        </Pressable>
     )
 }
 
