@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 const slide_3 = () => {
   const NEXT_SLIDE = './name';
   return (
-    <Pressable onPress={() => router.push(NEXT_SLIDE)}>
+    <Pressable onPress={() => router.navigate(NEXT_SLIDE)}>
       <View>
           <Text>On Slide 3</Text>
           <Text>Press to Go user</Text>
