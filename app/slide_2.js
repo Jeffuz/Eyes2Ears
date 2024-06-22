@@ -11,7 +11,7 @@ const Slide2 = () => {
   };
   
   const onSwipeRight = () => {
-    router.push('slide_1'); // or router.push('slide_1') if you want to explicitly navigate to slide_1
+    router.push('slide_1'); 
   };
   
   const onGestureEvent = (event) => {
