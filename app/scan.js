@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
+  ActivityIndicator,
 } from "react-native";
 import GestureRecognizer, {
   swipeDirections,
@@ -114,7 +115,12 @@ const scan = () => {
   return (
     <>
       {imagePreview && imageResult ? (
-        <CameraPreview photo={imageResult} retakePicture={retakePicture} />
+        <View style={styles.previewContainer}>
+          <CameraPreview photo={imageResult} retakePicture={retakePicture} />
+          <View style={styles.overlay}>
+            <ActivityIndicator size="large" color="#fff" />
+          </View>
+        </View>
       ) : (
         <View style={styles.container}>
           <GestureRecognizer
@@ -143,6 +149,18 @@ const scan = () => {
   );
 };
 
+const CameraPreview = ({ photo, retakePicture }) => {
+  return (
+    <View style={styles.previewContainer}>
+      <ImageBackground source={{ uri: photo && photo.uri }} style={styles.imageBackground}>
+        {/* <TouchableOpacity onPress={retakePicture} style={styles.retakeButton}>
+          <Text style={styles.retakeButtonText}>Re-take</Text>
+        </TouchableOpacity> */}
+      </ImageBackground>
+    </View>
+  );
+};
+
 export default scan;
 
 const styles = StyleSheet.create({
@@ -153,37 +171,32 @@ const styles = StyleSheet.create({
   camera: {
     flex: 1,
   },
+  previewContainer: {
+    flex: 1,
+    backgroundColor: "transparent",
+    width: "100%",
+    height: "100%",
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  retakeButton: {
+    position: "absolute",
+    bottom: 50,
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 5,
+  },
+  retakeButtonText: {
+    color: "#000",
+    fontSize: 20,
+  },
 });
-
-const CameraPreview = ({ photo, retakePicture }) => {
-  return (
-    <View
-      style={{
-        backgroundColor: "transparent",
-        flex: 1,
-        width: "100%",
-        height: "100%",
-      }}
-    >
-      <ImageBackground
-        source={{ uri: photo && photo.uri }}
-        style={{
-          flex: 1,
-        }}
-      >
-        <View>
-          {/* <TouchableOpacity onPress={() => retakePicture()}>
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 20,
-              }}
-            >
-              Re-take
-            </Text>
-          </TouchableOpacity> */}
-        </View>
-      </ImageBackground>
-    </View>
-  );
-};
