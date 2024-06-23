@@ -11,6 +11,8 @@ const result = () => {
     function sayInstruction() {
       Speech.speak(description);
     }
+    sayInstruction();
+    
   })
   return (
     <View style={styles.container}>
