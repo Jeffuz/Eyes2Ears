@@ -90,7 +90,7 @@ const scan = () => {
             {
               role: "user",
               content: [
-                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, just give the description." },
+                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, don't respond to me, just give the description." },
                 {
                   type: "image_url",
                   image_url: {
