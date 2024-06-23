@@ -43,7 +43,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.historyButton}>
-        <Text style={styles.buttonText}>History</Text>
+        <Text style={styles.buttonText} onPress={() => router.push("history")}>History</Text>
       </Pressable>
       <View style={styles.msgcontainer}>
         <Text style={styles.hello}>Hi, {userName}</Text>
