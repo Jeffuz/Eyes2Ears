@@ -1,5 +1,6 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useState, useRef } from "react";
+import { router } from "expo-router";
 import {
   Button,
   StyleSheet,
@@ -11,7 +12,7 @@ import {
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
-import { router } from "expo-router";
+import { useNavigation } from '@react-navigation/native';
 import OpenAI from "openai";
 import { OPENAPI_KEY } from "@env";
 
@@ -21,6 +22,7 @@ const scan = () => {
   const [imagePreview, setImagePreview] = useState(false);
   const [imageResult, setImageResult] = useState(null);
   const cameraRef = useRef(null);
+  const navigation = useNavigation();
 
   // camera
   if (!permission) {
@@ -61,7 +63,7 @@ const scan = () => {
 
   const onSwipe = (gestureName) => {
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_DOWN, SWIPE_UP } = swipeDirections;
-    if (gestureName === SWIPE_LEFT || gestureName === SWIPE_RIGHT) {
+    if (gestureName === SWIPE_LEFT || SWIPE_RIGHT) {
       toggleCameraFacing();
     }
     if (gestureName === SWIPE_DOWN) {
@@ -71,6 +73,41 @@ const scan = () => {
     if (gestureName === SWIPE_UP) {
       takePicture();
       setImagePreview(true);
+    }
+  };
+
+  const descriptionGen = async (base64Image) => {
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${OPENAPI_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o",
+          messages: [
+            {
+              role: "user",
+              content: [
+                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, just give the description." },
+                {
+                  type: "image_url",
+                  image_url: {
+                    url: base64Image,
+                  },
+                },
+              ],
+            },
+          ],
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data.choices[0].message.content);
+      navigation.navigate('result', { description: data.choices[0].message.content });
+    } catch (e) {
+      console.log('Error:', e);
     }
   };
 
@@ -117,44 +154,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-const openai = new OpenAI({
-  apiKey: OPENAPI_KEY,
-});
-
-const descriptionGen = async (base64Image) => {
-    // console.log("PRESSED ", OPENAPI_KEY);
-    try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${OPENAPI_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-4o",
-          messages: [
-            {
-              role: "user",
-              content: [
-                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, just give the description." },
-                {
-                  type: "image_url",
-                  image_url: {
-                    url: base64Image,
-                  },
-                },
-              ],
-            },
-          ],
-        }),
-      });
-
-      const data = await response.json();
-      console.log(data.choices[0].message.content);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
 const CameraPreview = ({ photo, retakePicture }) => {
   return (

@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Welcome from './welcome';
 import Home from './home';
 import Name from './name';
+import Result from './result';
 export default function Page() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,7 +45,7 @@ export default function Page() {
   //   );
   // }
   return (
-    <Name/>
+    <Home/>
   )
 
 }
