@@ -9,6 +9,9 @@ const result = () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity>
+        <Text>Save Scan</Text>
+      </TouchableOpacity>
       <Text style={styles.description}>{description}</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('scan')}>
         <Text style={styles.buttonText}>Go Back to Scan</Text>
@@ -22,9 +25,9 @@ export default result;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    padding: 0,
   },
   description: {
     fontSize: 18,
