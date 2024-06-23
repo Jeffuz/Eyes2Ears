@@ -48,11 +48,12 @@ export default History;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 0,
   },
   list: {
     flexGrow: 1,
-    paddingBottom: 80,
+    padding: 10,
+    //paddingBottom: 80,
   },
   itemContainer: {
     marginBottom: 20,
@@ -85,14 +86,19 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   backButton: {
-    backgroundColor: '#3D50E7',
-    padding: 15,
-    borderRadius: 10,
+    height: 150,
+    backgroundColor: '#3D50E7', // blue background color
+    justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    bottom: -40,
+    left: 0,
+    right: 0,
   },
   backButtonText: {
+    fontFamily: 'Nunito-Bold',
     color: '#fff',
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });

@@ -37,8 +37,8 @@ const result = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleSaveScan}>
-        <Text>Save Scan</Text>
+      <TouchableOpacity style={styles.saveScanButton} onPress={handleSaveScan}>
+        <Text style={styles.buttonText}>Save Scan</Text>
       </TouchableOpacity>
       <Text style={styles.description}>{description}</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('scan')}>
@@ -65,14 +65,13 @@ const styles = StyleSheet.create({
     padding: 10,
     // textAlign: 'center',
   },
-  // button: {
-  //   height: 50,
-  //   width: '80%',
-  //   backgroundColor: '#3D50E7', // blue background color
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   borderRadius: 10,
-  // },
+  saveScanButton: {
+    height: 150,
+    backgroundColor: '#FFC000', // yellow background color
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
   button: {
     height: 150,
     backgroundColor: '#3D50E7', // blue background color
