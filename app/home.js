@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { PermissionsAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Speech from 'expo-speech';
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -58,22 +59,6 @@ const Home = () => {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    const requestCameraPermission = async () => {
-      try {
-        const permissionResult = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
-        );
-
-        console.log(permissionResult);
-        if (permissionResult === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log("You can use the camera");
-        } else {
-          console.log("Camera permission denied");
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    };
 
     const getUserName = async () => {
       try {
@@ -85,8 +70,6 @@ const Home = () => {
         console.log("Error retrieving data", error);
       }
     };
-
-    requestCameraPermission();
     getUserName();
   }, []);
 
