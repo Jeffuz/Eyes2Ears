@@ -14,7 +14,7 @@ const result = () => {
       </TouchableOpacity>
       <Text style={styles.description}>{description}</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('scan')}>
-        <Text style={styles.buttonText}>Go Back to Scan</Text>
+        <Text style={styles.buttonText}>Continue Scan</Text>
       </TouchableOpacity>
     </View>
   );
@@ -31,16 +31,28 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 18,
+    marginTop: 40,
     marginBottom: 20,
-    textAlign: 'center',
+    padding: 10,
+    // textAlign: 'center',
   },
+  // button: {
+  //   height: 50,
+  //   width: '80%',
+  //   backgroundColor: '#3D50E7', // blue background color
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   borderRadius: 10,
+  // },
   button: {
-    height: 50,
-    width: '80%',
+    height: 150,
     backgroundColor: '#3D50E7', // blue background color
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    position: 'absolute',
+    bottom: -40,
+    left: 0,
+    right: 0,
   },
   buttonText: {
     color: '#fff',
