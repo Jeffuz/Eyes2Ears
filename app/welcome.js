@@ -15,6 +15,7 @@ const welcome = () => {
         });
         setFontsLoaded(true);
       }
+      
       loadFonts();
     }, []);
   

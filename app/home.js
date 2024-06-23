@@ -37,9 +37,19 @@ const Home = () => {
       }
     };
 
+    const sayInstructions = () => { 
+        if (userName === '')
+            return;
+        
+        const stuffToSay = `Hello ${userName}, please swipe up to use the camera, or swipe down to view past images.`;
+
+        Speech.speak(stuffToSay);
+    }
     requestCameraPermission();
     getUserName();
-  }, []);
+    sayInstructions();
+
+  }, [userName]);
 
   return (
     <View style={styles.container}>

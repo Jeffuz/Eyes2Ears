@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import * as Font from 'expo-font';
+import * as Speech from 'expo-speech';
+
 
 const NameComponent = () => {
   const [userInputName, setUserInputName] = useState("");
@@ -58,6 +60,11 @@ const NameComponent = () => {
       });
       setFontsLoaded(true);
     }
+    function sayInstructions() {
+      const stuffToSay = "Hello, please enter your name by speaking into the microphone or typing it in";
+      Speech.speak(stuffToSay);
+    }
+    sayInstructions();
     loadFonts();
   }, []);
 
