@@ -1,9 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
 const slide_2 = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'PlaywritePL-Regular': require('../assets/fonts/PlaywritePL-Regular.ttf'),
+        'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+    loadFonts();
+  }, []);
+
   const router = useRouter();
 
   const onSwipeLeft = () => {
@@ -26,6 +40,10 @@ const slide_2 = () => {
     <GestureHandlerRootView style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <View style={styles.container}>
+          <Image
+            source={require('./images/howitworks.png')}
+            style={styles.logo}
+          />
           <Text style={styles.title}>Scan and Listen</Text>
           <Text style={styles.tagline}>Eyes2Ears uses your smartphone camera to capture images. It analyzes photos and provides audio descriptions to help you understand your surroundings. 
           </Text>
@@ -44,15 +62,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Center content horizontally
     padding: 24,
   },
+  logo: {
+    width: 285,
+    height: 285,
+    marginTop: 50, 
+},
   title: {
-    fontSize: 36,
-    fontWeight: 'normal',
-    marginTop: 120,
-  },
-  tagline: {
-    fontSize: 16,
+    fontFamily: 'Nunito-Bold',
+    fontSize: 30,
     fontWeight: 'normal',
     marginTop: 80,
+  },
+  tagline: {
+    fontFamily: 'Nunito-Regular',
+    fontSize: 16,
+    fontWeight: 'normal',
+    marginTop: 40,
     textAlign: 'center',
   },
 });
