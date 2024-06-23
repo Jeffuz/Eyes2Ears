@@ -4,6 +4,55 @@ import { router } from 'expo-router';
 import { PermissionsAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Speech from 'expo-speech';
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignSelf: 'stretch',
+    },
+    msgcontainer: {
+      //backgroundColor: '#000000', // yellow background color
+      height: 450,
+      justifyContent: 'center',
+      paddingHorizontal: 50,
+  
+    },
+    historyButton: {
+      height: 150,
+      backgroundColor: '#FFC000', // yellow background color
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
+    hello: {
+      fontFamily: 'Nunito-Bold',
+      fontSize: 35,
+      fontWeight: 'bold',
+      //marginTop: 220,
+      //marginHorizontal: 100,
+      //textAlign: 'center',
+    },
+    welcome: {
+      fontFamily: 'Nunito-Bold',
+      fontSize: 26,
+      fontWeight: 'normal',
+    },
+    scanButton: {
+      height: 150,
+      backgroundColor: '#3D50E7', // blue background color
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'absolute',
+      bottom: -40,
+      left: 0,
+      right: 0,
+    },
+    buttonText: {
+      fontFamily: 'Nunito-Bold',
+      color: '#fff',
+      fontSize: 30,
+      fontWeight: 'bold',
+    },
+  });
 
 const Home = () => {
   const [userName, setUserName] = useState('');
@@ -59,54 +108,4 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  msgcontainer: {
-    //backgroundColor: '#000000', // yellow background color
-    height: 450,
-    justifyContent: 'center',
-    paddingHorizontal: 50,
 
-  },
-  historyButton: {
-    height: 150,
-    backgroundColor: '#FFC000', // yellow background color
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  hello: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 35,
-    fontWeight: 'bold',
-    //marginTop: 220,
-    //marginHorizontal: 100,
-    //textAlign: 'center',
-  },
-  welcome: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 26,
-    fontWeight: 'normal',
-    //marginVertical: 220,
-    //marginHorizontal: 100,
-    //textAlign: 'center',
-  },
-  scanButton: {
-    height: 150,
-    backgroundColor: '#3D50E7', // blue background color
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: -40,
-    left: 0,
-    right: 0,
-  },
-  buttonText: {
-    fontFamily: 'Nunito-Bold',
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});
