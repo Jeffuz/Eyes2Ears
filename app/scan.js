@@ -13,7 +13,7 @@ import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
 import { useNavigation } from '@react-navigation/native';
-import OpenAI from "openai";
+// import OpenAI from "openai";
 import { OPENAPI_KEY } from "@env";
 
 const scan = () => {
@@ -49,7 +49,7 @@ const scan = () => {
       const photo = await cameraRef.current.takePictureAsync({ base64: true });
       setImageResult(photo);
       const base64Image = `data:image/jpeg;base64,${photo.base64}`;
-      descriptionGen(base64Image);
+      descriptionGen(base64Image, photo);
     } else {
       console.log("Unable to take photo.");
     }
@@ -76,7 +76,7 @@ const scan = () => {
     }
   };
 
-  const descriptionGen = async (base64Image) => {
+  const descriptionGen = async (base64Image, photo) => {
     try {
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -90,7 +90,7 @@ const scan = () => {
             {
               role: "user",
               content: [
-                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, just give the description." },
+                { type: "text", text: "Describe this image in under 100 words as if we're having a conversation. Don't include my question, don't respond to me, just give the description." },
                 {
                   type: "image_url",
                   image_url: {
@@ -104,8 +104,8 @@ const scan = () => {
       });
 
       const data = await response.json();
-      console.log(data.choices[0].message.content);
-      navigation.navigate('result', { description: data.choices[0].message.content });
+      // console.log(data.choices[0].message.content);
+      navigation.navigate('result', { description: data.choices[0].message.content, photo: photo.uri });
     } catch (e) {
       console.log('Error:', e);
     }
