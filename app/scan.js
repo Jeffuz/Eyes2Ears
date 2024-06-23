@@ -1,5 +1,5 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { router } from "expo-router";
 import {
   Button,
@@ -16,6 +16,7 @@ import GestureRecognizer, {
 import { useNavigation } from '@react-navigation/native';
 // import OpenAI from "openai";
 import { OPENAPI_KEY } from "@env";
+import * as Speech from 'expo-speech';
 
 const scan = () => {
   const [facing, setFacing] = useState("back");
@@ -25,6 +26,11 @@ const scan = () => {
   const cameraRef = useRef(null);
   const navigation = useNavigation();
 
+  useEffect(() => {
+    Speech.stop();
+    const stuffToSay = "Swipe Up to take a picture, Swipe Down to go back, and left or right to change direction of the camera."
+    Speech.speak(stuffToSay, {pitch: 0.5})
+  }, [])
   // camera
   if (!permission) {
     return <View />;
@@ -47,10 +53,13 @@ const scan = () => {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync({ base64: true });
-      setImageResult(photo);
-      const base64Image = `data:image/jpeg;base64,${photo.base64}`;
-      descriptionGen(base64Image, photo);
+      try{
+        const photo = await cameraRef.current?.takePictureAsync({ base64: true })
+            setImageResult(photo);
+            const base64Image = `data:image/jpeg;base64,${photo.base64}`;
+            descriptionGen(base64Image);        
+      } catch (e) {console.error(e)}
+
     } else {
       console.log("Unable to take photo.");
     }
@@ -63,6 +72,7 @@ const scan = () => {
   };
 
   const onSwipe = (gestureName) => {
+
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_DOWN, SWIPE_UP } = swipeDirections;
     if (gestureName === SWIPE_LEFT || SWIPE_RIGHT) {
       toggleCameraFacing();
@@ -72,6 +82,7 @@ const scan = () => {
       setImagePreview(false);
     }
     if (gestureName === SWIPE_UP) {
+      console.log("Taking picture")
       takePicture();
       setImagePreview(true);
     }
@@ -130,17 +141,11 @@ const scan = () => {
             }}
           >
             <CameraView ref={cameraRef} style={styles.camera} facing={facing}>
-              {/* <Pressable
-          onPress={() => {
-            takePicture();
-          }}
-        > */}
               <TouchableOpacity
                 onPress={() => {
                   toggleCameraFacing();
                 }}
               />
-              {/* </Pressable> */}
             </CameraView>
           </GestureRecognizer>
         </View>

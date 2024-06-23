@@ -20,6 +20,14 @@
           "microphonePermission": "Allow Eyes2Ears to access your microphone.",
           "speechRecogntionPermission": "Allow Eyes2Ears to securely recognize user speech"
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Eyes2Ears to access your camera",
+          "microphonePermission": "Allow Eyes2Ears to access your microphone",
+          "recordAudioAndroid": true
+        }
       ]
     ],
     "ios": {
@@ -35,7 +43,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [ "CAMERA", "RECORD_AUDIO" ]
+      "permissions": [ "CAMERA", "RECORD_AUDIO", "WRITE_EXTERNAL_STORAGE" ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

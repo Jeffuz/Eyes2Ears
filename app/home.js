@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
-import { PermissionsAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Speech from 'expo-speech';
 
@@ -70,8 +69,19 @@ const Home = () => {
         console.log("Error retrieving data", error);
       }
     };
+
+    const sayInstructions = () => { 
+        if (userName === '')
+            return;
+        
+        const stuffToSay = `Hello ${userName}, please press the bottom to use the camera, or press the top to view past images.`;
+        Speech.stop();
+        Speech.speak(stuffToSay, {pitch: 0.7});
+    }
     getUserName();
-  }, []);
+    sayInstructions();
+
+  }, [userName]);
 
   return (
     <View style={styles.container}>

@@ -1,15 +1,23 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getFirestore, doc, setDoc } from "firebase/firestore"; 
 import { app, storage, db } from '../firebaseConfig';
+import * as Speech from 'expo-speech';
 
 const result = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { description, photo } = route.params;
-  // console.log(photo);
+
+  useEffect(() => {
+    function sayInstruction() {
+      Speech.speak(description);
+    }
+    sayInstruction();
+    
+  })
 
   const handleSaveScan = async () => {
     try {
