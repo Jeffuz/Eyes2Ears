@@ -1,12 +1,12 @@
-import { CameraView, useCameraPermissions, camera } from "expo-camera";
+import { CameraView, useCameraPermissions} from "expo-camera";
 import { useState, useRef } from "react";
 import {
   Button,
-  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
 } from "react-native";
 import GestureRecognizer, {
   swipeDirections,
@@ -16,6 +16,8 @@ import { router } from "expo-router";
 const scan = () => {
   const [facing, setFacing] = useState("back");
   const [permission, requestPermission] = useCameraPermissions();
+  const [imagePreview, setImagePreview] = useState(false);
+  const [imageResult, setImageResult] = useState(null);
   const cameraRef = useRef(null);
 
   if (!permission) {
@@ -40,11 +42,18 @@ const scan = () => {
   const takePicture = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      console.log(photo);
+      //   console.log(photo);
+      setImageResult(photo);
     } else {
-      console.log("L");
+      console.log("Unable to take photo.");
     }
   };
+
+  const retakePicture = () => {
+    setImageResult(null);
+    setImagePreview(false);
+    router.push('scan');
+  }
 
   const onSwipe = (gestureName) => {
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_DOWN, SWIPE_UP } = swipeDirections;
@@ -53,35 +62,43 @@ const scan = () => {
     }
     if (gestureName === SWIPE_DOWN) {
       router.push("home");
+      setImagePreview(false);
     }
     if (gestureName === SWIPE_UP) {
       takePicture();
+      setImagePreview(true);
     }
   };
 
   return (
-    <View style={styles.container}>
-      <GestureRecognizer
-        onSwipe={(direction) => onSwipe(direction)}
-        style={{
-          flex: 1,
-        }}
-      >
-        <CameraView ref={cameraRef} style={styles.camera} facing={facing}>
-          {/* <Pressable
-            onPress={() => {
-              takePicture();
+    <>
+      {imagePreview && imageResult ? (
+        <CameraPreview photo={imageResult} retakePicture={retakePicture}/>
+      ) : (
+        <View style={styles.container}>
+          <GestureRecognizer
+            onSwipe={(direction) => onSwipe(direction)}
+            style={{
+              flex: 1,
             }}
-          > */}
-          <TouchableOpacity
-            onPress={() => {
-              toggleCameraFacing();
-            }}
-          />
-          {/* </Pressable> */}
-        </CameraView>
-      </GestureRecognizer>
-    </View>
+          >
+            <CameraView ref={cameraRef} style={styles.camera} facing={facing}>
+              {/* <Pressable
+          onPress={() => {
+            takePicture();
+          }}
+        > */}
+              <TouchableOpacity
+                onPress={() => {
+                  toggleCameraFacing();
+                }}
+              />
+              {/* </Pressable> */}
+            </CameraView>
+          </GestureRecognizer>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -96,3 +113,38 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const CameraPreview = ({photo, retakePicture}) => {
+    return (
+      <View
+        style={{
+          backgroundColor: 'transparent',
+          flex: 1,
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        <ImageBackground
+          source={{uri: photo && photo.uri}}
+          style={{
+            flex: 1
+          }}
+        >
+            <View>
+              <TouchableOpacity
+                onPress={()=>retakePicture()}
+              >
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 20
+                  }}
+                >
+                  Re-take
+                </Text>
+              </TouchableOpacity>
+            </View>
+        </ImageBackground>
+      </View>
+    )
+  }
