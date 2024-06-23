@@ -48,12 +48,10 @@ export default History;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 0,
   },
   list: {
     flexGrow: 1,
     padding: 10,
-    //paddingBottom: 80,
   },
   itemContainer: {
     marginBottom: 20,
@@ -82,18 +80,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  buttonContainer: {
-    padding: 10,
-  },
+
   backButton: {
     height: 150,
     backgroundColor: '#3D50E7', // blue background color
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    bottom: -40,
-    left: 0,
-    right: 0,
+    marginBottom: -40,
   },
   backButtonText: {
     fontFamily: 'Nunito-Bold',

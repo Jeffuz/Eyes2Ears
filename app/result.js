@@ -41,8 +41,8 @@ const result = () => {
         <Text style={styles.buttonText}>Save Scan</Text>
       </TouchableOpacity>
       <Text style={styles.description}>{description}</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('scan')}>
-        <Text style={styles.buttonText}>Continue Scan</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('home')}>
+        <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
     </View>
   );
