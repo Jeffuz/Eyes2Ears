@@ -72,6 +72,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignSelf: 'stretch',
   },
   msgcontainer: {
     //backgroundColor: '#000000', // yellow background color
