@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
       },
     title: {
         fontSize: 64,
-        fontWeight: "normal",
+        fontWeight: 'normal',
         marginTop: 120,
     },
     logo: {
@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
         marginTop: 50, 
     },
     logotitle: {
-        fontFamily: "Overpass-Regular",
+        fontFamily: 'PlaywriteMX-Regular',
         fontSize: 36,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         marginTop: 10,
         shadowColor: 'rgba(65, 87, 255, 0.8)', // Shadow color
         shadowOffset: { width: 0, height: 2 }, // Shadow offset
@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
         shadowRadius: 4, // Shadow radius
     },
     tagline: {
+        fontFamily: 'PlaywriteMX-Regular',
         fontSize: 16,
-        fontWeight: "normal",
+        fontWeight: 'normal',
         marginTop: 80,
     },
 })
