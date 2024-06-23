@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         marginTop: 50, 
     },
     logotitle: {
+        fontFamily: "Overpass-Regular",
         fontSize: 36,
         fontWeight: "bold",
         marginTop: 10,

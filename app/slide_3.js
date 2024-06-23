@@ -6,16 +6,18 @@ import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-
 const slide_3 = () => {
   const router = useRouter();
 
-  // const onSwipeLeft = () => {
-  //   router.push('slide_3');
-  // };
+  const onSwipeLeft = () => {
+    router.push('name');
+  };
   
   const onSwipeRight = () => {
     router.push('slide_2'); 
   };
   
   const onGestureEvent = (event) => {
-    if (event.nativeEvent.translationX > 50) {
+    if (event.nativeEvent.translationX < -50) {
+      onSwipeLeft();
+    } else if (event.nativeEvent.translationX > 50) {
       onSwipeRight();
     }
   };
