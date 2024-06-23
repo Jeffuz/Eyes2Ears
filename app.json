@@ -6,8 +6,21 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Eyes2Ears to access your microphone.",
+          "speechRecogntionPermission": "Allow Eyes2Ears to securely recognize user speech"
+        }
+      ]
+      
     ],
     "ios": {
       "infoPlist": {
@@ -17,14 +30,12 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.Eyes2Ears.Eyes2Ears",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO"
-      ]
+      "permissions": [ "CAMERA", "RECORD_AUDIO" ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
