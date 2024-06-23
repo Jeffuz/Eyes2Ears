@@ -10,14 +10,7 @@ const result = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { description, photo } = route.params;
-
-  useEffect(() => {
-    function sayInstruction() {
-      Speech.speak(description);
-    }
-    sayInstruction();
-    
-  })
+  // console.log(photo);
 
   const handleSaveScan = async () => {
     try {
@@ -42,7 +35,14 @@ const result = () => {
       alert('Failed to save scan.');
     }
   };
-
+  
+  useEffect(() => {
+    function sayInstruction() {
+      Speech.speak(description);
+    }
+    sayInstruction();
+    
+  })
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.saveScanButton} onPress={handleSaveScan}>
