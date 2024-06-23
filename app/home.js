@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
-import { PermissionsAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Speech from 'expo-speech';
 
@@ -9,22 +8,6 @@ const Home = () => {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    const requestCameraPermission = async () => {
-      try {
-        const permissionResult = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
-        );
-
-        console.log(permissionResult);
-        if (permissionResult === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log("You can use the camera");
-        } else {
-          console.log("Camera permission denied");
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    };
 
     const getUserName = async () => {
       try {
@@ -45,7 +28,6 @@ const Home = () => {
         Speech.stop();
         Speech.speak(stuffToSay, {pitch: 0.7});
     }
-    requestCameraPermission();
     getUserName();
     sayInstructions();
 
