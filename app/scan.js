@@ -53,13 +53,10 @@ const scan = () => {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      try{
-        const photo = await cameraRef.current?.takePictureAsync({ base64: true })
-            setImageResult(photo);
-            const base64Image = `data:image/jpeg;base64,${photo.base64}`;
-            descriptionGen(base64Image);        
-      } catch (e) {console.error(e)}
-
+      const photo = await cameraRef.current.takePictureAsync({ base64: true });
+      setImageResult(photo);
+      const base64Image = `data:image/jpeg;base64,${photo.base64}`;
+      descriptionGen(base64Image, photo);
     } else {
       console.log("Unable to take photo.");
     }
