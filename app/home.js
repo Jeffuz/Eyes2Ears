@@ -97,7 +97,7 @@ const Home = () => {
       </Pressable>
       <View style={styles.msgcontainer}>
         <Text style={styles.hello}>Hi, {userName}</Text>
-        <Text style={styles.welcome}>Welcome to EyestoEars</Text>
+        <Text style={styles.welcome}>Welcome to Eyes2Ears</Text>
       </View>
       <Pressable style={styles.scanButton} onPress={() => router.push("scan")}>
         <Text style={styles.buttonText}>Scan</Text>

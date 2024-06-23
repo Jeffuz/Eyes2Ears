@@ -28,10 +28,10 @@ const result = () => {
         timestamp: Date.now()
       });
 
-      // alert('Scan saved successfully!');
+      alert('Scan saved successfully!');
     } catch (error) {
       console.error("Error saving scan: ", error);
-      // alert('Failed to save scan.');
+      alert('Failed to save scan.');
     }
   };
 
