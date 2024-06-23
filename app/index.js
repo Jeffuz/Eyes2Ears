@@ -29,19 +29,22 @@ export default function Page() {
 
   }, [])
 
-  if(isLoggedIn) {
-    return (
-      <View style={styles.container}>
-        <Home/>
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        <Welcome/>
-      </View>
-    );
-  }
+  // if(isLoggedIn) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Home/>
+  //     </View>
+  //   );
+  // } else {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Welcome/>
+  //     </View>
+  //   );
+  // }
+  return (
+    <Welcome/>
+  )
 
 }
 
