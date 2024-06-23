@@ -1,12 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import * as Speech from 'expo-speech';
 
 const result = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { description } = route.params;
-
+  useEffect(() => {
+    function sayInstruction() {
+      Speech.speak(description);
+    }
+  })
   return (
     <View style={styles.container}>
       <TouchableOpacity>

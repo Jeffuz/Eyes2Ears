@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Platform } from "react-native";
 import { useState, useEffect } from "react";
 import { PermissionsAndroid } from 'react-native';
 
-
 export default async function RequestMicPermissions() {  
     const [recording, setRecording] = useState();
     const [permissionResponse, requestPermission] = Audio.usePermissions();
