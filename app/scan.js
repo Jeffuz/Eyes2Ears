@@ -172,7 +172,7 @@ const CameraPreview = ({ photo, retakePicture }) => {
         }}
       >
         <View>
-          <TouchableOpacity onPress={() => retakePicture()}>
+          {/* <TouchableOpacity onPress={() => retakePicture()}>
             <Text
               style={{
                 color: "#fff",
@@ -181,7 +181,7 @@ const CameraPreview = ({ photo, retakePicture }) => {
             >
               Re-take
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </ImageBackground>
     </View>
