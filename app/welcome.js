@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
 import { router } from 'expo-router';
+import * as Font from 'expo-font';
 
 const welcome = () => {
+    const [fontsLoaded, setFontsLoaded] = useState(false);
 
+    useEffect(() => {
+      async function loadFonts() {
+        await Font.loadAsync({
+          'PlaywritePL-Regular': require('../assets/fonts/PlaywritePL-Regular.ttf'),
+          'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
+          'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
+        });
+        setFontsLoaded(true);
+      }
+      loadFonts();
+    }, []);
+  
     return (
         <Pressable onPress={() => router.push('slide_1')}>
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome</Text>
+                <Text style={styles.title}>Welcome!</Text>
                 <Image
                     source={require('./images/Eyes2Ears.png')}
                     style={styles.logo}
@@ -28,9 +42,10 @@ const styles = StyleSheet.create({
         //padding: 24,
       },
     title: {
-        fontSize: 64,
+        fontFamily: 'Nunito-Bold',
+        fontSize: 48,
         fontWeight: 'normal',
-        marginTop: 120,
+        marginTop: 150,
     },
     logo: {
         width: 240,
@@ -38,17 +53,16 @@ const styles = StyleSheet.create({
         marginTop: 50, 
     },
     logotitle: {
-        fontFamily: 'PlaywriteMX-Regular',
-        fontSize: 36,
+        fontFamily: 'PlaywritePL-Regular',
+        fontSize: 28,
         fontWeight: 'bold',
-        marginTop: 10,
         shadowColor: 'rgba(65, 87, 255, 0.8)', // Shadow color
         shadowOffset: { width: 0, height: 2 }, // Shadow offset
         shadowOpacity: 1, // Shadow opacity
         shadowRadius: 4, // Shadow radius
     },
     tagline: {
-        fontFamily: 'PlaywriteMX-Regular',
+        fontFamily: 'Nunito-Regular',
         fontSize: 16,
         fontWeight: 'normal',
         marginTop: 80,

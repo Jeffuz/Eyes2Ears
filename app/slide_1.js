@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import * as Font from 'expo-font';
 
 const slide_1 = () => {
   const router = useRouter();
@@ -21,6 +22,20 @@ const slide_1 = () => {
       onSwipeRight();
     }
   };
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'PlaywritePL-Regular': require('../assets/fonts/PlaywritePL-Regular.ttf'),
+        'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
+        'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+    loadFonts();
+  }, []);
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -54,11 +69,13 @@ const styles = StyleSheet.create({
     marginTop: 50, 
 },
   title: {
+    fontFamily: 'Nunito-Bold',
     fontSize: 30,
     fontWeight: 'normal',
     marginTop: 80,
   },
   tagline: {
+    fontFamily: 'Nunito-Regular',
     fontSize: 16,
     fontWeight: 'normal',
     marginTop: 40,
