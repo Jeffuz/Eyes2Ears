@@ -52,16 +52,30 @@ const styles = StyleSheet.create({
   },
   list: {
     flexGrow: 1,
-    paddingBottom: 80, // Add some padding to avoid overlap with the button
+    paddingBottom: 80,
   },
   itemContainer: {
     marginBottom: 20,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   image: {
     width: 300,
     height: 300,
     marginBottom: 10,
+    borderRadius: 10,
   },
   description: {
     fontSize: 16,
