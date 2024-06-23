@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Animated} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Animated } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import * as Font from 'expo-font';
 
 const NameComponent = () => {
   const [userInputName, setUserInputName] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const navigation = useNavigation();
 
   const handleClick = async () => {
     Animated.timing(fadeAnim, {
@@ -19,8 +22,10 @@ const NameComponent = () => {
 
       if (couldStoreUsername) {
         console.log("Success");
+        navigation.navigate('home');
       } else {
         console.log("Fail");
+        setIsButtonDisabled(true);
       }
 
       // Fade back in
@@ -38,9 +43,9 @@ const NameComponent = () => {
       return true;
     } catch (e) {
       console.log("Error", e.message);
-    };
+    }
     return false;
-  };
+  }
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
@@ -56,16 +61,25 @@ const NameComponent = () => {
     loadFonts();
   }, []);
 
+  if (!fontsLoaded) {
+    return null; // or a loading spinner
+  }
+
   return (
-    <Animated.View style={styles.container}>
+    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
       <Text style={styles.title}>What is your name?</Text>
       <TextInput 
         placeholder='Enter name here' 
         onChangeText={setUserInputName}
         value={userInputName}
         style={styles.textInput}
+        placeholderTextColor="#fff"
       />
-      <TouchableOpacity style={styles.button} onPress={handleClick}>
+      <TouchableOpacity 
+        style={[styles.button, isButtonDisabled && styles.buttonDisabled]} 
+        onPress={handleClick}
+        disabled={isButtonDisabled}
+      >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </Animated.View>
@@ -73,6 +87,7 @@ const NameComponent = () => {
 };
 
 export default NameComponent;
+
 
 const styles = StyleSheet.create({
   container: {
