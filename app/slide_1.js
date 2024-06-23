@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 
@@ -26,6 +26,10 @@ const slide_1 = () => {
     <GestureHandlerRootView style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <View style={styles.container}>
+          <Image
+            source={require('./images/welcome.png')}
+            style={styles.logo}
+          />
           <Text style={styles.title}>Welcome</Text>
           <Text style={styles.tagline}>Welcome to Eyes2Ears! This app helps you see the world through sound with real-time audio and text descriptions using advanced AI. 
           </Text>
@@ -44,15 +48,20 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Center content horizontally
     padding: 24,
   },
+  logo: {
+    width: 285,
+    height: 285,
+    marginTop: 50, 
+},
   title: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'normal',
-    marginTop: 120,
+    marginTop: 80,
   },
   tagline: {
     fontSize: 16,
     fontWeight: 'normal',
-    marginTop: 80,
+    marginTop: 40,
     textAlign: 'center',
   },
 });
