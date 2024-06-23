@@ -4,9 +4,11 @@ import { router } from "expo-router";
 import OpenAI from "openai";
 import { OPENAPI_KEY } from "@env";
 import * as Speech from 'expo-speech';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home() {
     const [currentDescription, setCurrentDescription] = useState(null);
+    const [userName, setUsername] = useState("");
 
     const openai = new OpenAI({
         apiKey: OPENAPI_KEY,
@@ -38,10 +40,21 @@ export default function Home() {
         
     // setCurrentDescription(response.choices[0]);
     };
+    // Load Necessary data and speak text
     useEffect(() => {
-        const thingToSay = 'Swipe up to take a picture';
-        Speech.speak(thingToSay);
-    }, [])
+        if (userName !== "") {
+            const thingToSay = `Hello ${userName}. Swipe up to take a picture`;
+            Speech.speak(thingToSay);
+            return
+        }
+
+        async function loadData() {
+            setUsername( await AsyncStorage.getItem("userName"));
+        }
+
+        loadData()
+    }, [userName])
+
 
     const NEXT_SLIDE = 'scan';
     return (

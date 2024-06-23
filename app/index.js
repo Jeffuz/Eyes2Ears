@@ -38,8 +38,6 @@ export default function Page() {
     return (
       <View style={styles.container}>
         <Welcome/>
-        {/* <Name/> */}
-        <Text style={styles.red}>zlihgeolhgoe</Text>
       </View>
     );
   }
