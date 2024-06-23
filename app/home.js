@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { router } from "expo-router";
-import OpenAI from "openai";
-import { OPENAPI_KEY } from "@env";
 import { PermissionsAndroid } from "react-native";
 
 const home = () => {
-  const [currentDescription, setCurrentDescription] = useState(null);
 
   useEffect(() => {
     const requestCameraPermission = async () => {
@@ -27,32 +24,6 @@ const home = () => {
     };
     requestCameraPermission();
   }, []);
-
-  const openai = new OpenAI({
-    apiKey: OPENAPI_KEY,
-  });
-
-  const description = async () => {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [
-        {
-          role: "user",
-          content: [
-            { type: "text", text: "Describe whats in the image" },
-            {
-              type: "image_url",
-              image_url: {
-                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
-              },
-            },
-          ],
-        },
-      ],
-    });
-    console.log(response.choices[0].message.content);
-    // setCurrentDescription(response.choices[0]);
-  };
 
   return (
     <View>
