@@ -13,6 +13,7 @@
     ],
     "plugins": [
       "expo-router",
+      "expo-font",
       [
         "expo-av",
         {
@@ -20,7 +21,6 @@
           "speechRecogntionPermission": "Allow Eyes2Ears to securely recognize user speech"
         }
       ]
-      
     ],
     "ios": {
       "infoPlist": {
