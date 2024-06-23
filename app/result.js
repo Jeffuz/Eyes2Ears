@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   description: {
-    fontSize: 18,
-    marginTop: 40,
+    fontSize: 24,
+    marginTop: 60,
     marginBottom: 20,
     padding: 10,
     // textAlign: 'center',
