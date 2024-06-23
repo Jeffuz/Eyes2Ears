@@ -1,5 +1,5 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { router } from "expo-router";
 import {
   Button,
@@ -15,6 +15,7 @@ import GestureRecognizer, {
 import { useNavigation } from '@react-navigation/native';
 import OpenAI from "openai";
 import { OPENAPI_KEY } from "@env";
+import * as Speech from 'expo-speech';
 
 const scan = () => {
   const [facing, setFacing] = useState("back");
@@ -24,6 +25,11 @@ const scan = () => {
   const cameraRef = useRef(null);
   const navigation = useNavigation();
 
+  useEffect(() => {
+    Speech.stop();
+    const stuffToSay = "Swipe Up to take a picture, Swipe Down to go back, and left or right to change direction of the camera."
+    Speech.speak(stuffToSay, {pitch: 0.5})
+  }, [])
   // camera
   if (!permission) {
     return <View />;
