@@ -77,8 +77,8 @@ const NameComponent = () => {
       />
       <TouchableOpacity 
         style={[styles.button, isButtonDisabled && styles.buttonDisabled]} 
-        onPress={handleClick}
         disabled={isButtonDisabled}
+        onPress={handleClick}
       >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
