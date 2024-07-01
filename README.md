@@ -2,6 +2,8 @@
 
 Eyes2Ears is a mobile application designed to assist visually impaired individuals by utilizing advanced AI technologies. The app allows users to capture images using their smartphone camera, which are then processed in real-time to provide audio descriptions of their surroundings. Eyes2Ears aims to enhance the quality of life for visually impaired users by providing intuitive and immediate audio feedback.
 
+![Eyes2Ears](https://github.com/Jeffuz/Eyes2Ears/assets/52511888/fff361ee-08fd-402d-87ef-706cd7c313c4)
+
 ## Features
 
 - Capture images and be able to save them.
